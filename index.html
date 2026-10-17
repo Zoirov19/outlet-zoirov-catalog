@@ -10,18 +10,36 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f8;
-      color: #171717;
+    font-family: Arial, sans-serif;
+    background: #f5efe8;
+    color: #3b1f2a;
     }
-    header {
-      background: #111827;
-      color: white;
-      padding: 24px 16px;
-      text-align: center;
-    }
-    header h1 { margin: 0 0 8px; font-size: 30px; }
-    header p { margin: 0; color: #d1d5db; }
+  header {
+    background: #80132f;
+    color: white;
+    padding: 24px 16px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    color: #f3dce3;
+}header::before {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 85px;
+    margin: 0 auto 12px;
+    background-image: url("logo.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
     .sale {
       margin-top: 15px;
       display: inline-block;
@@ -32,6 +50,11 @@
       font-weight: bold;
       font-size: 13px;
     }
+    .sale {
+    display: none;
+    margin-top: 15px;
+    /* qolgan mavjud qatorlar saqlanadi */
+}
     .container {
       width: min(1200px, 100%);
       margin: auto;
