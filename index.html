@@ -14,38 +14,68 @@
     background: #f5efe8;
     color: #3b1f2a;
     }
-  header {
-    background: #80132f;
-    color: white;
-    padding: 24px 16px;
-    text-align: center;
+
+header {
+  position: relative;
+  background: linear-gradient(135deg, #74122e, #941b3c);
+  color: white;
+  padding: 32px 24px 32px 155px;
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-header h1 {
-    margin: 0 0 8px;
-    font-size: 30px;
-}
-
-header p {
-    margin: 0;
-    color: #f3dce3;
-}
-    
 header::before {
   content: "";
-  display: block;
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 14px;
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 105px;
+  height: 105px;
   background-image: url("logo.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
-  overflow: hidden;
   border: 3px solid #f3dce3;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+header p {
+  margin: 0;
+  color: #f3dce3;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 24px 12px 24px 88px;
+    min-height: 120px;
+    text-align: left;
+  }
+
+  header::before {
+    left: 12px;
+    width: 64px;
+    height: 64px;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
+
+  header p {
+    font-size: 13px;
+  }
+}
+
 
 }
     .sale {
