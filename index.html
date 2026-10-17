@@ -1,47 +1,335 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111827">
-<title>Outlet.zoirov — Mahsulotlar katalogi</title>
-<style>
-:root{--ink:#151827;--muted:#687083;--line:#e8eaf0;--bg:#f6f7fb;--accent:#e73870}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
-header{background:#fff;border-bottom:1px solid var(--line)}.wrap{max-width:1180px;margin:auto;padding:0 18px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0}.brand{font-weight:950;font-size:23px;letter-spacing:-.7px}.brand span{color:var(--accent)}.small{color:var(--muted);font-size:13px}
-.hero{padding:24px 0 18px}.heroBox{border-radius:24px;padding:32px;background:linear-gradient(120deg,#151827,#39425c);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden}.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.08;letter-spacing:-1.2px;margin:0 0 12px}.hero p{margin:0;color:#e2e5ef;max-width:620px;line-height:1.55}.spark{font-size:74px;color:#ffd2df}
-.tools{display:flex;gap:10px;margin:16px 0}.field{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:white;font:inherit;outline:none}.field:focus{border-color:#a9afc2}.tools select{max-width:190px}
-.head{display:flex;align-items:center;justify-content:space-between;margin:20px 0 14px}.head h2{font-size:23px;margin:0}.count{font-size:13px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-bottom:36px}.card{background:white;border:1px solid var(--line);border-radius:19px;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 5px 20px #18203b08}.photo{width:100%;aspect-ratio:3/4;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px}.photo img{width:100%;height:100%;object-fit:contain;display:block}.body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#a61f4b;background:#fff0f5;border-radius:99px;padding:5px 9px}.name{font-size:16px;font-weight:800;line-height:1.35}.desc{font-size:13px;line-height:1.45;color:var(--muted);min-height:37px}.prices{margin-top:auto;padding-top:4px}.old{color:#8990a0;text-decoration:line-through;font-size:13px}.sale{font-weight:950;font-size:22px;color:var(--accent);margin-top:2px}.discount{display:inline-block;font-size:11px;color:#147345;background:#e9fbf1;border-radius:99px;padding:5px 8px;margin-top:5px}.order{display:block;text-align:center;text-decoration:none;background:var(--ink);color:white;border-radius:12px;padding:12px 10px;font-size:14px;font-weight:800;margin-top:8px}.order:hover{background:#303750}
-footer{border-top:1px solid var(--line);background:#fff;padding:24px 0;color:var(--muted);font-size:13px}.notice{margin-top:9px;font-size:12px;color:#8a90a0}
-@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:680px){.wrap{padding:0 12px}.top{padding:14px 0}.brand{font-size:19px}.heroBox{padding:24px 19px}.spark{font-size:46px}.tools{flex-direction:column}.tools select{max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.body{padding:10px}.name{font-size:14px}.desc{font-size:12px;min-height:0}.sale{font-size:18px}.order{font-size:12px;padding:11px 6px}.head h2{font-size:20px}}
-</style></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>Outlet.zoirov — Online katalog</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f8;
+      color: #171717;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 30px; }
+    header p { margin: 0; color: #d1d5db; }
+    .sale {
+      margin-top: 15px;
+      display: inline-block;
+      background: #facc15;
+      color: #111827;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .container {
+      width: min(1200px, 100%);
+      margin: auto;
+      padding: 20px 14px 40px;
+    }
+    .intro { margin-bottom: 18px; }
+    .intro h2 { margin-bottom: 6px; }
+    .intro p { color: #666; margin-top: 0; }
+    .search {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      background: white;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid #ececec;
+      box-shadow: 0 4px 15px #00000008;
+    }
+    .photo {
+      position: relative;
+      background: #f2eee8;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .discount {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #dc2626;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 7px;
+      padding: 7px 9px;
+    }
+    .details { padding: 14px; }
+    .details h3 {
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 0 0 12px;
+      min-height: 44px;
+    }
+    .prices {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .new-price { font-size: 19px; font-weight: bold; color: #dc2626; }
+    .old-price { font-size: 13px; color: #888; text-decoration: line-through; }
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 9px;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 12px;
+    }
+    .add {
+      background: #111827;
+      color: white;
+      width: 100%;
+    }
+    .add:hover { background: #374151; }
+    .cart {
+      margin-top: 28px;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #e5e5e5;
+    }
+    .cart h2 { margin-top: 0; }
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-row small { color: #666; display: block; margin-top: 4px; }
+    .qty { display: flex; align-items: center; gap: 9px; }
+    .qty button { padding: 7px 11px; background: #eee; }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 18px 0;
+    }
+    .order {
+      width: 100%;
+      background: #16a34a;
+      color: white;
+      font-size: 16px;
+    }
+    .empty { color: #777; }
+    footer {
+      text-align: center;
+      padding: 22px 14px;
+      color: #777;
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 25px; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .details { padding: 10px; }
+      .details h3 { font-size: 13px; min-height: 55px; }
+      .new-price { font-size: 16px; }
+      .old-price { font-size: 12px; }
+      button { font-size: 13px; }
+      .cart { padding: 14px; }
+    }
+  </style>
+</head>
 <body>
-<header><div class="wrap top"><div><div class="brand">OUTLET<span>.</span>ZOIROV</div><div class="small">Onlayn mahsulotlar katalogi</div></div><div class="small">🎈 Bayram bezaklari</div></div></header>
-<main class="wrap">
-<section class="hero"><div class="heroBox"><div><h1>Bayramingizni<br>yanada chiroyli qiling!</h1><p>Mahsulotlarni ko‘ring, narxlarni solishtiring va o‘zingizga yoqqan to‘plamni tanlang.</p></div><div class="spark">✦</div></div></section>
-<div class="tools"><input class="field" id="search" placeholder="🔎 Mahsulot qidirish..." aria-label="Mahsulot qidirish"><select class="field" id="sort" aria-label="Saralash"><option value="default">Saralash</option><option value="low">Arzondan qimmatga</option><option value="high">Qimmatdan arzonga</option></select></div>
-<div class="head"><h2>Mahsulotlar</h2><span class="count" id="count"></span></div>
-<section class="grid" id="grid"></section>
-</main>
-<footer><div class="wrap"><b>OUTLET.ZOIROV</b><div style="margin-top:6px">Buyurtma berish uchun mahsulot kartasidagi tugmani bosing.</div><div class="notice">Narxlar so‘mda ko‘rsatilgan. Buyurtma Telegram orqali yuboriladi; yuborishdan oldin xabarni tekshiring.</div></div></footer>
-<script>
-const products = [{"name": "Bolalar tug‘ilgan kuni uchun shar nabor", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Samolyotli, ko‘k, sariq va yashil rangli sharlar to‘plami.", "image": "images/product-1.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Pushti rangli, mushukchali sharlar to‘plami.", "image": "images/product-2.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Pushti, oq va oltin rangli tug‘ilgan kun bezaklari.", "image": "images/product-3.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor — Baby Boy", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Ko‘k, oq va oltin rangli Baby Boy sharlar to‘plami.", "image": "images/product-4.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor — First Birthday Girl", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Qizaloqning bir yosh tug‘ilgan kuni uchun pushti-oq bezaklar.", "image": "images/product-5.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor — First Birthday Boy", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "O‘g‘il bolaning bir yosh tug‘ilgan kuni uchun ko‘k-oq bezaklar.", "image": "images/product-6.jpeg"}, {"name": "Bolalar tug‘ilgan kuni uchun shar nabor — Unicorn", "price": 65000, "sale": 45000, "category": "Bayram", "desc": "Pushti, oq va oltin rangli, unicorn bezakli sharlar to‘plami.", "image": "images/product-7.jpeg"}];
-const money=n=>Number(n).toLocaleString("uz-UZ")+" so‘m";
-function orderLink(p){
- const message=`Assalomu alaykum! Men ushbu mahsulotga buyurtma bermoqchiman:\n${p.name}\nNarxi: ${money(p.sale)}\nRasm: ${location.origin}/${p.image}`;
- return "https://t.me/share/url?url="+encodeURIComponent(location.href)+"&text="+encodeURIComponent(message);
-}
-function render(){
- const q=document.getElementById("search").value.trim().toLowerCase();
- const sort=document.getElementById("sort").value;
- let list=products.filter(p=>(p.name+" "+p.desc+" "+p.category).toLowerCase().includes(q));
- if(sort==="low")list.sort((a,b)=>a.sale-b.sale);
- if(sort==="high")list.sort((a,b)=>b.sale-a.sale);
- document.getElementById("count").textContent=list.length+" ta mahsulot";
- document.getElementById("grid").innerHTML=list.length?list.map((p,i)=>`<article class="card"><div class="photo"><img src="${p.image}" alt="${p.name}" loading="${i>3?'lazy':'eager'}"></div><div class="body"><div class="tag">${p.category}</div><div class="name">${p.name}</div><div class="desc">${p.desc}</div><div class="prices"><div class="old">${money(p.price)}</div><div class="sale">${money(p.sale)}</div><span class="discount">20 000 so‘m chegirma</span></div><a class="order" href="${orderLink(p)}" target="_blank" rel="noopener">Telegram orqali buyurtma ↗</a></div></article>`).join(""):`<div style="grid-column:1/-1;text-align:center;padding:40px;color:#687083">Mahsulot topilmadi.</div>`;
-}
-document.getElementById("search").addEventListener("input",render);
-document.getElementById("sort").addEventListener("change",render);
-render();
-</script></body></html>
+  <header>
+    <h1>Outlet.zoirov</h1>
+    <p>Online katalog — yoqimli narxlar, ajoyib sovg‘alar</p>
+    <span class="sale">🔥 Maxsus chegirma: 45 000 so‘m</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Mahsulotlar katalogi</h2>
+      <p>O‘zingizga yoqqan mahsulotni tanlang va savatga qo‘shing.</p>
+    </section>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Mahsulot qidirish..."
+      aria-label="Mahsulot qidirish"
+    >
+
+    <section id="products" class="products"></section>
+
+    <section class="cart" id="cart">
+      <h2>🛒 Savatingiz</h2>
+      <div id="cart-items"><p class="empty">Hozircha savat bo‘sh.</p></div>
+      <div class="total">
+        <span>Jami:</span>
+        <span id="total">0 so‘m</span>
+      </div>
+      <button class="order" onclick="orderProducts()">
+        Telegram orqali buyurtma berish
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Outlet.zoirov · Online katalog
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 1", image: "product-1.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 2, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 2", image: "product-2.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 3, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 3", image: "product-3.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 4, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 4", image: "product-4.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 5, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 5", image: "product-5.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 6, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 6", image: "product-6.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 7, name: "Bolalar tug‘ilgan kuni uchun shar nabor — 7", image: "product-7.jpeg", price: 45000, oldPrice: 65000 }
+    ];
+
+    const cart = {};
+
+    function money(value) {
+      return value.toLocaleString("uz-UZ") + " so‘m";
+    }
+
+    function renderProducts() {
+      const query = document.getElementById("search").value.toLowerCase().trim();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      const container = document.getElementById("products");
+
+      if (!filtered.length) {
+        container.innerHTML = "<p>Mahsulot topilmadi.</p>";
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => `
+        <article class="card">
+          <div class="photo">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            <span class="discount">-31%</span>
+          </div>
+          <div class="details">
+            <h3>${p.name}</h3>
+            <div class="prices">
+              <span class="new-price">${money(p.price)}</span>
+              <span class="old-price">${money(p.oldPrice)}</span>
+            </div>
+            <button class="add" onclick="addToCart(${p.id})">
+              Savatga qo‘shish
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+    }
+
+    function changeQty(id, change) {
+      cart[id] = (cart[id] || 0) + change;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cart-items");
+      const ids = Object.keys(cart);
+      if (!ids.length) {
+        container.innerHTML = '<p class="empty">Hozircha savat bo‘sh.</p>';
+        document.getElementById("total").textContent = money(0);
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = ids.map(id => {
+        const p = products.find(item => item.id === Number(id));
+        const qty = cart[id];
+        total += p.price * qty;
+        return `
+          <div class="cart-row">
+            <div>
+              <strong>${p.name}</strong>
+              <small>${money(p.price)} × ${qty}</small>
+            </div>
+            <div class="qty">
+              <button onclick="changeQty(${p.id}, -1)" aria-label="Kamaytirish">−</button>
+              <span>${qty}</span>
+              <button onclick="changeQty(${p.id}, 1)" aria-label="Ko‘paytirish">+</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("total").textContent = money(total);
+    }
+
+    function orderProducts() {
+      const ids = Object.keys(cart);
+      if (!ids.length) {
+        alert("Avval savatga mahsulot qo‘shing.");
+        return;
+      }
+
+      let total = 0;
+      const lines = ids.map(id => {
+        const p = products.find(item => item.id === Number(id));
+        total += p.price * cart[id];
+        return `${p.name} — ${cart[id]} dona — ${money(p.price * cart[id])}`;
+      });
+
+      const message =
+        "Assalomu alaykum! Outlet.zoirov katalogidan buyurtma bermoqchiman:\n\n" +
+        lines.join("\n") +
+        "\n\nJami: " + money(total);
+
+      const url = "https://t.me/share/url?url=" +
+        encodeURIComponent("https://zoirov19.github.io/outlet-zoirov-catalog/") +
+        "&text=" + encodeURIComponent(message);
+
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("search").addEventListener("input", renderProducts);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
