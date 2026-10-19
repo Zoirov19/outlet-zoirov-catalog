@@ -160,6 +160,7 @@ header p {
       margin-bottom: 14px;
     }
     .new-price { font-size: 19px; font-weight: bold; color: #dc2626; }
+    .wholesale-price { margin: -6px 0 12px; font-size: 13px; font-weight: bold; color: #166534; }
     .old-price { font-size: 13px; color: #888; text-decoration: line-through; }
     button {
       cursor: pointer;
@@ -253,7 +254,6 @@ html {
 }
 
 </style>
-  </style>
 </head>
 <body>
   <header>
@@ -303,7 +303,9 @@ html {
       { id: 4, name: "Bolalar tug‘ilgan kuni uchun shar nabor — SH10-16", image: "product-4.jpeg", price: 45000, oldPrice: 65000 },
       { id: 5, name: "Bolalar tug‘ilgan kuni uchun shar nabor — SH10-6q", image: "product-5.jpeg", price: 45000, oldPrice: 65000 },
       { id: 6, name: "Bolalar tug‘ilgan kuni uchun shar nabor — SH10-6o", image: "product-6.jpeg", price: 45000, oldPrice: 65000 },
-      { id: 7, name: "Bolalar tug‘ilgan kuni uchun shar nabor — SH10-12", image: "product-7.jpeg", price: 45000, oldPrice: 65000 }
+      { id: 7, name: "Bolalar tug‘ilgan kuni uchun shar nabor — SH10-12", image: "product-7.jpeg", price: 45000, oldPrice: 65000 },
+      { id: 8, name: "Cherry Collection — xushbo‘y shamlar to‘plami", image: "product-8.jpeg", price: 25000, oldPrice: 35000, wholesalePrice: 19000 },
+      { id: 9, name: "Sweet Harvest — qulupnay va shaftoli aromali shamlar", image: "product-9.jpeg", price: 25000, oldPrice: 35000, wholesalePrice: 19000 }
     ];
 
     const cart = {};
@@ -326,7 +328,7 @@ html {
         <article class="card">
           <div class="photo">
             <img src="${p.image}" alt="${p.name}" loading="lazy">
-            <span class="discount">-31%</span>
+            <span class="discount">-${Math.round((1 - p.price / p.oldPrice) * 100)}%</span>
           </div>
           <div class="details">
             <h3>${p.name}</h3>
@@ -334,6 +336,7 @@ html {
               <span class="new-price">${money(p.price)}</span>
               <span class="old-price">${money(p.oldPrice)}</span>
             </div>
+            ${p.wholesalePrice ? `<p class="wholesale-price">Optom: ${money(p.wholesalePrice)}</p>` : ""}
             <button class="add" onclick="addToCart(${p.id})">
               Savatga qo‘shish
             </button>
